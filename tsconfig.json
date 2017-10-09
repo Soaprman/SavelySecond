@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "commonjs",
-        "sourceMap": true
+        "module": "amd",
+        "sourceMap": true,
+        "outFile": "./index.js"
     }
 }
