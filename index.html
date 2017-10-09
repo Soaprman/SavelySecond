@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Savely Second - Bravely Second Save Editor</title>
+        <script type="text/javascript" src="app.js"></script>
+        <meta charset="UTF-8">
+
+        <style type="text/css">
+            .top { font-family: "Comic Sans MS" }
+            .box { border: 1px black solid; padding: 10px; margin-bottom: 1em; }
+        </style>
+    </head>
+    <body>
+        <div class="top">
+            <div style="font-size: 3em;">SAVELY SECOND</div>
+            <div style="font-size: 1.5em;">bravely second save editor</div>
+            <div style="font-size: 1em;">"trust me, it works" - me, assuring you that it works. i think it works. boy, i sure hope it works</div>
+        </div>
+        <br />
+
+        <div class="box">
+            Load a BD2GAME0.sav, BD2GAME1.sav, or BD2GAME2.sav file: <input type="file" id="importedSave" accept=".sav" />
+            <br />
+            <button id="saveChanges">Save changes + download edited save</button>
+            <br />
+            (You need a 3DS with homebrew and/or CFW to extract saves for this. If that doesn't make sense to you, google it or something. Citra saves also work.)
+        </div>
+
+        <div class="box">
+            <button id="allJobsLv10">Set all jobs to level 10 (master)</button>
+            <button id="allJobsLv11">Set all jobs to level 11 (legendary)</button>
+            <button id="unlockAllJobs">Unlock all jobs</button>
+            <br /><br />
+            More functionality might come someday, but it might also not come someday.
+            <br />
+            Don't get your hopes up because woooooowee this save structure boy howdy lemme tell ya
+        </div>
+
+        <div class="box">
+            This part just shows information about the loaded save to help convince you that it works.<br />
+            If this data looks wrong, then there's something <i>different</i> about your save and it might not work if you edit it. (It might, though; you're welcome to try)<br />
+            If you report issues, PLEASE UPLOAD YOUR SAVE or I will not help you.<br />
+            (Note: kaiser/templar/yokai may be wrong because I haven't unlocked them yet to verify)
+            <hr />
+            <div id="inspiresConfidenceDoesntIt"></div>
+        </div>
+
+        <br /><br />
+        source to this thing is on the git's hub: 
+        <br />
+        feel free to modify it and rehost it to your fart's content
+    </body>
+</html>
