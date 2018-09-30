@@ -21,6 +21,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.getElementById('unlkdJobsLv10').addEventListener('click', function () {
+        _bsSave.characters.tiz.masterUnlkdJobs();
+        _bsSave.characters.magnolia.masterUnlkdJobs();
+        _bsSave.characters.yew.masterUnlkdJobs();
+        _bsSave.characters.edea.masterUnlkdJobs();
+        writeInspirationalSpeech();
+    });
+    
+    document.getElementById('unlkdJobsLv11').addEventListener('click', function () {
+        _bsSave.characters.tiz.legendaryUnlkdJobs();
+        _bsSave.characters.magnolia.legendaryUnlkdJobs();
+        _bsSave.characters.yew.legendaryUnlkdJobs();
+        _bsSave.characters.edea.legendaryUnlkdJobs();
+        writeInspirationalSpeech();
+    });
+
     document.getElementById('allJobsLv10').addEventListener('click', function () {
         _bsSave.characters.tiz.masterAllJobs();
         _bsSave.characters.magnolia.masterAllJobs();
@@ -54,52 +70,33 @@ document.addEventListener('DOMContentLoaded', () => {
 function writeInspirationalSpeech() {
     let speech = '';
 
-    speech += 'TIZ: ' + formatCharacterJp(_bsSave.characters.tiz);
-    speech += '<br /><br />';
-    speech += 'MAGNOLIA: ' + formatCharacterJp(_bsSave.characters.magnolia);
-    speech += '<br /><br />';
-    speech += 'YEW: ' + formatCharacterJp(_bsSave.characters.yew);
-    speech += '<br /><br />';
-    speech += 'EDEA: ' + formatCharacterJp(_bsSave.characters.edea);
+    speech += 'TIZ: <ul>' + formatCharacterJp(_bsSave.characters.tiz) + '</ul>';
+    speech += '<br/><br/>';
+    speech += 'MAGNOLIA: <ul>' + formatCharacterJp(_bsSave.characters.magnolia) + '</ul>';
+    speech += '<br/><br/>';
+    speech += 'YEW: <ul>' + formatCharacterJp(_bsSave.characters.yew) + '</ul>';
+    speech += '<br/><br/>';
+    speech += 'EDEA: <ul>' + formatCharacterJp(_bsSave.characters.edea) + '</ul>';
 
     document.getElementById('inspiresConfidenceDoesntIt').innerHTML = speech;
+    document.getElementById('inspiresConfidenceDoesntIt').style.display = "";
+    document.getElementById('lessInpiration').style.display = "none";
 }
 
 function formatCharacterJp(character: BravelySecondSaveCharacter) {
     // Ordered by position on in-game menu
-    let list = [
-        `<b>freelancer:</b> ${formatJobJp(character.jobMastery.freelancer)}`,
-        `<b>wizard:</b> ${formatJobJp(character.jobMastery.wizard)}`,
-        `<b>charioteer:</b> ${formatJobJp(character.jobMastery.charioteer)}`,
-        `<b>fencer:</b> ${formatJobJp(character.jobMastery.fencer)}`,
-        `<b>bishop:</b> ${formatJobJp(character.jobMastery.bishop)}`,
-        `<b>astrologian:</b> ${formatJobJp(character.jobMastery.astrologian)}`,
-        `<b>catmancer:</b> ${formatJobJp(character.jobMastery.catmancer)}`,
-        `<b>redmage:</b> ${formatJobJp(character.jobMastery.redmage)}`,
-        `<b>thief:</b> ${formatJobJp(character.jobMastery.thief)}`,
-        `<b>swordmaster:</b> ${formatJobJp(character.jobMastery.swordmaster)}`,
-        `<b>summoner:</b> ${formatJobJp(character.jobMastery.summoner)}`,
-        `<b>hawkeye:</b> ${formatJobJp(character.jobMastery.hawkeye)}`,
-        `<b>patissier:</b> ${formatJobJp(character.jobMastery.patissier)}`,
-        `<b>whitemage:</b> ${formatJobJp(character.jobMastery.whitemage)}`,
-        `<b>merchant:</b> ${formatJobJp(character.jobMastery.merchant)}`,
-        `<b>blackmage:</b> ${formatJobJp(character.jobMastery.blackmage)}`,
-        `<b>ranger:</b> ${formatJobJp(character.jobMastery.ranger)}`,
-        `<b>knight:</b> ${formatJobJp(character.jobMastery.knight)}`,
-        `<b>ninja:</b> ${formatJobJp(character.jobMastery.ninja)}`,
-        `<b>exorcist:</b> ${formatJobJp(character.jobMastery.exorcist)}`,
-        `<b>monk:</b> ${formatJobJp(character.jobMastery.monk)}`,
-        `<b>valkyrie:</b> ${formatJobJp(character.jobMastery.valkyrie)}`,
-        `<b>pirate:</b> ${formatJobJp(character.jobMastery.pirate)}`,
-        `<b>performer:</b> ${formatJobJp(character.jobMastery.performer)}`,
-        `<b>timemage:</b> ${formatJobJp(character.jobMastery.timemage)}`,
-        `<b>darkknight:</b> ${formatJobJp(character.jobMastery.darkknight)}`,
-        `<b>guardian:</b> ${formatJobJp(character.jobMastery.guardian)}`,
-        `<b>templar:</b> ${formatJobJp(character.jobMastery.templar)}`,
-        `<b>kaiser:</b> ${formatJobJp(character.jobMastery.kaiser)}`,
-        `<b>yokai:</b> ${formatJobJp(character.jobMastery.yokai)}`,
-    ];
-    return list.join(' / ');
+    let list = ``;
+    
+    for (let job in _bsSave.jobUnlocks)
+    {
+        // if (_bsSave.jobUnlocks[job] === true)
+        // {
+        //     list += `<li><b>${job}:</b> ${formatJobJp(character.jobMastery[job])}</li>`;
+        // }
+        list += `<li><b>${job}:</b> ${formatJobJp(character.jobMastery[job])}</li>`;
+    }
+
+    return list;
 }
 
 function formatJobJp(jp) {
