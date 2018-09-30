@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let reader = new FileReader();
         reader.onload = function () {
-            let buffer = this.result;
+            let buffer = this.result as ArrayBuffer;
             let array = new Uint8Array(buffer);
             let binaryReader = new BinaryFileReader(array);
             _bsSave = new BravelySecondSave(binaryReader);
