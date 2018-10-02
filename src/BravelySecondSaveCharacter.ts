@@ -95,7 +95,7 @@ class BravelySecondSaveCharacter {
             kaiser: 0, // could be templar, kaiser, or yokai
             yokai: 0, // could be templar, kaiser, or yokai
         };
-    
+        
         public masterAllJobs = () => {
             this.setAllJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level10);
         }
@@ -110,6 +110,33 @@ class BravelySecondSaveCharacter {
 
         public legendaryUnlkdJobs = () => {
             this.setUnlkdJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level11);
+        }
+
+        public jobLvlUp = (jobUp, action) => {
+            switch (action) {
+                case "+1":
+                    for (let lvl in BravelySecondSaveCharacter.JP_LEVELS)
+                    {
+                        if(BravelySecondSaveCharacter.JP_LEVELS[lvl] > this.jobMastery[jobUp])
+                        {
+                            this.jobMastery[jobUp] = BravelySecondSaveCharacter.JP_LEVELS[lvl];
+                            break;
+                        }
+                    }       
+                    break;
+            
+                case "master":
+                        this.jobMastery[jobUp] = BravelySecondSaveCharacter.JP_LEVELS.level10;
+                        break;
+
+                case "legend":
+                    this.jobMastery[jobUp] = BravelySecondSaveCharacter.JP_LEVELS.level11;
+                    break;
+
+                default:
+                    alert("If you see this something went horribly wrong!");
+                    break;
+            }
         }
     
         private setAllJobMasteries = (jp) => {

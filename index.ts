@@ -70,17 +70,31 @@ document.addEventListener('DOMContentLoaded', () => {
 function writeInspirationalSpeech() {
     let speech = '';
 
-    speech += 'TIZ: <ul>' + formatCharacterJp(_bsSave.characters.tiz) + '</ul>';
-    speech += '<br/><br/>';
-    speech += 'MAGNOLIA: <ul>' + formatCharacterJp(_bsSave.characters.magnolia) + '</ul>';
-    speech += '<br/><br/>';
-    speech += 'YEW: <ul>' + formatCharacterJp(_bsSave.characters.yew) + '</ul>';
-    speech += '<br/><br/>';
-    speech += 'EDEA: <ul>' + formatCharacterJp(_bsSave.characters.edea) + '</ul>';
+    speech += `<table class="charTable"><tr><th colspan="5">Tiz</th></tr><tr><th>Job</th><th>Level</th><th>JP</th><th>Level Up!</th></tr>`;
+    speech += formatCharacterJp(_bsSave.characters.tiz);
+    speech += `</table>`;
+
+    speech += `<table class="charTable"><tr><th colspan="5">Magnolia</th></tr><tr><th>Job</th><th>Level</th><th>JP</th><th>Level Up!</th></tr>`;
+    speech += formatCharacterJp(_bsSave.characters.magnolia);
+    speech += `</table>`;
+
+    speech += `<table class="charTable"><tr><th colspan="5">Yew</th></tr><tr><th>Job</th><th>Level</th><th>JP</th><th>Level Up!</th></tr>`;
+    speech += formatCharacterJp(_bsSave.characters.yew);
+    speech += `</table>`;
+
+    speech += `<table class="charTable"><tr><th colspan="5">Edea</th></tr><tr><th>Job</th><th>Level</th><th>JP</th><th>Level Up!</th></tr>`;
+    speech += formatCharacterJp(_bsSave.characters.edea);
+    speech += `</table>`;
+
+    speech += `<table class="unlockTable"><tr><th colspan="2">Locked Jobs</th></tr>`;
+    speech += formatJobs(_bsSave.jobUnlocks);
+    speech += `</table>`;
 
     document.getElementById('inspiresConfidenceDoesntIt').innerHTML = speech;
     document.getElementById('inspiresConfidenceDoesntIt').style.display = "";
     document.getElementById('lessInpiration').style.display = "none";
+
+    reattachEvents();
 }
 
 function formatCharacterJp(character: BravelySecondSaveCharacter) {
@@ -89,14 +103,108 @@ function formatCharacterJp(character: BravelySecondSaveCharacter) {
     
     for (let job in _bsSave.jobUnlocks)
     {
-        // if (_bsSave.jobUnlocks[job] === true)
-        // {
-        //     list += `<li><b>${job}:</b> ${formatJobJp(character.jobMastery[job])}</li>`;
-        // }
-        list += `<li><b>${job}:</b> ${formatJobJp(character.jobMastery[job])}</li>`;
+        if (_bsSave.jobUnlocks[job] === true)
+        {
+            let jobMas = formatJobJp(character.jobMastery[job]);
+            list += `<tr><td class="jobCell"><b>${job}</b></td>`
+            let tinyMas;
+            list += `<td class="lvlCell">${jobMas["level"]}</td><td class="jpCell">${jobMas["curJp"]}/${jobMas["needJp"]}</td><td>`;
+            if (jobMas["level"] < 9)
+            {
+                list += `<button id="${job}_button">+1</button>`;
+                tinyMas = true;
+            }
+            if (jobMas["level"] <= 9)
+            {
+                if (tinyMas)
+                {
+                    list += `<button id="${job}_buttonMaster">Master</button>`;
+                }
+                else
+                {
+                    list += `<button id="${job}_buttonMaster" class="bigMaster">Master</button>`;
+                }
+            }
+            if (jobMas["level"] == 10)
+            {
+                list += `<button id="${job}_buttonLegend">Legendary</button>`;
+            }
+            if (jobMas["level"] == 11)
+            {
+                list += `<span>Maxed Out</span>`;
+            }
+            list +=`</td></tr>`;
+        }
     }
 
     return list;
+}
+
+function formatJobs(jobs) {
+    let list = ``;
+    
+    for (let job in jobs)
+    {
+        if (jobs[job] === false)
+        {
+            list += `<tr><td>${job}</td><td><button id="${job}_buttonUnlock">Unlock?</button></td></tr>`;
+        }
+    }
+
+    return list;
+}
+
+function reattachEvents() {
+    // Level Up
+    let buttons = document.querySelectorAll('[id$="_button"]');
+    for (let i = 0; i < buttons.length; i++)
+    {
+        buttons[i].addEventListener("click", function ()
+        {
+            let char = this.closest('table').querySelector('th').innerText.toLowerCase();
+            let job = this.id.split("_")[0];
+            _bsSave.characters[char].jobLvlUp(job, "+1");
+            writeInspirationalSpeech();
+        });
+    }
+
+    // Master
+    buttons = document.querySelectorAll('[id$="_buttonMaster"]');
+    for (let i = 0; i < buttons.length; i++)
+    {
+        buttons[i].addEventListener("click", function ()
+        {
+            let char = this.closest('table').querySelector('th').innerText.toLowerCase();
+            let job = this.id.split("_")[0];
+            _bsSave.characters[char].jobLvlUp(job, "master");
+            writeInspirationalSpeech();
+        });
+    }
+
+    // Legendary
+    buttons = document.querySelectorAll('[id$="_buttonLegend"]');
+    for (let i = 0; i < buttons.length; i++)
+    {
+        buttons[i].addEventListener("click", function ()
+        {
+            let char = this.closest('table').querySelector('th').innerText.toLowerCase();
+            let job = this.id.split("_")[0];
+            _bsSave.characters[char].jobLvlUp(job, "legend");
+            writeInspirationalSpeech();
+        });
+    }
+
+    // Unlock
+    buttons = document.querySelectorAll('[id$="_buttonUnlock"]');
+    for (let i = 0; i < buttons.length; i++)
+    {
+        buttons[i].addEventListener("click", function ()
+        {
+            let job = this.id.split("_")[0];
+            _bsSave.jobUnlocks[job] = true;
+            writeInspirationalSpeech();
+        });
+    }
 }
 
 function formatJobJp(jp) {
@@ -150,7 +258,12 @@ function formatJobJp(jp) {
         needJp = BravelySecondSaveCharacter.JP_LEVELS.level2 - BravelySecondSaveCharacter.JP_LEVELS.level1;
     }
 
-    return `Lv ${level} - ${curJp}/${needJp}`;
+    let result = [];
+    result["level"] = level;
+    result["curJp"] = curJp;
+    result["needJp"] = needJp;
+
+    return result;
 }
 
 

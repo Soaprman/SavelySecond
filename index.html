@@ -6,7 +6,21 @@
 
         <style type="text/css">
             .top { font-family: "Comic Sans MS" }
-            .box { border: 1px black solid; padding: 10px; margin-bottom: 1em; }
+            .box { border: 1px black solid; padding: 10px; margin-bottom: 1em; max-width: 99%;}
+            .charTable { margin: 5px; width: 24%; }
+            .unlockTable { margin: 5px; width: 100% }
+            table, td { border: 1px black solid; }
+            .jobCell { text-align: left; }
+            .jpCell { text-align: right; }
+            .lvlCell { text-align: center; }
+
+            [id$="_button"] { width: 50%; }
+            [id$="_buttonUnlock"] { width: 100%; }
+            [id$="_buttonMaster"] { width: 50%; }
+            .bigMaster { width: 100%; }
+            [id$="_buttonLegend"] { width: 100%; }
+
+            #inspiresConfidenceDoesntIt { display: flex; flex-direction: row; flex-wrap: wrap; }
         </style>
     </head>
     <body>
@@ -21,7 +35,7 @@
                 Load a BD2GAME0.sav, BD2GAME1.sav, or BD2GAME2.sav:<br/>
                 <input type="file" id="importedSave" accept=".sav" />
                 <br/><br/>
-            <button id="saveChanges">Save changes + download edited save</button>
+                <button id="saveChanges">Save changes + download edited save</button>
                 <br/>
             (You need a 3DS with homebrew and/or CFW to extract saves for this. If that doesn't make sense to you, google it or something. Citra saves also work.)
             </p>
