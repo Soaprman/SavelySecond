@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.getElementById('resetJobLvl').addEventListener('click', function () {
+        _bsSave.characters.tiz.resetJobs();
+        _bsSave.characters.magnolia.resetJobs();
+        _bsSave.characters.yew.resetJobs();
+        _bsSave.characters.edea.resetJobs();
+        writeInspirationalSpeech();
+    });
+    
     document.getElementById('unlkdJobsLv10').addEventListener('click', function () {
         _bsSave.characters.tiz.masterUnlkdJobs();
         _bsSave.characters.magnolia.masterUnlkdJobs();

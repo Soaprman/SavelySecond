@@ -75,7 +75,7 @@ class BravelySecondSaveCharacter {
             swordmaster: 0,
             pirate: 0,
             darkknight: 0,
-            templar: 0, // could be templar, kaiser, or yokai
+            templar: 0,
             summoner: 0,
             valkyrie: 0,
             redmage: 0,
@@ -92,9 +92,13 @@ class BravelySecondSaveCharacter {
             patissier: 0,
             exorcist: 0,
             guardian: 0,
-            kaiser: 0, // could be templar, kaiser, or yokai
-            yokai: 0, // could be templar, kaiser, or yokai
+            kaiser: 0, // could be kaiser or yokai
+            yokai: 0, // could be kaiser or yokai
         };
+        
+        public resetJobs = () => {
+            this.setAllJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level1);
+        }
         
         public masterAllJobs = () => {
             this.setAllJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level10);

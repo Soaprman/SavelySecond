@@ -180,9 +180,9 @@ class BravelySecondSave {
         this._binaryFileReader.advancePositionByBits(1);
         character.jobMastery.guardian = this._binaryFileReader.readUInt16();
         this._binaryFileReader.advancePositionByBits(1);
-        character.jobMastery.kaiser = this._binaryFileReader.readUInt16();
-        this._binaryFileReader.advancePositionByBits(1);
         character.jobMastery.yokai = this._binaryFileReader.readUInt16();
+        this._binaryFileReader.advancePositionByBits(1);
+        character.jobMastery.kaiser = this._binaryFileReader.readUInt16();
 
         // Unknown data
         this._binaryFileReader.readBytes(0x21);
@@ -257,9 +257,9 @@ class BravelySecondSave {
         this._binaryFileReader.advancePositionByBits(1);
         this._binaryFileReader.writeUInt16(character.jobMastery.guardian);
         this._binaryFileReader.advancePositionByBits(1);
-        this._binaryFileReader.writeUInt16(character.jobMastery.kaiser);
-        this._binaryFileReader.advancePositionByBits(1);
         this._binaryFileReader.writeUInt16(character.jobMastery.yokai);
+        this._binaryFileReader.advancePositionByBits(1);
+        this._binaryFileReader.writeUInt16(character.jobMastery.kaiser);
 
         // Unknown data
         this._binaryFileReader.readBytes(0x21);
@@ -333,8 +333,8 @@ class BravelySecondSave {
         this.jobUnlocks.patissier = this._binaryFileReader.readBit();
         this.jobUnlocks.exorcist = this._binaryFileReader.readBit();
         this.jobUnlocks.guardian = this._binaryFileReader.readBit();
-        this.jobUnlocks.kaiser = this._binaryFileReader.readBit();
         this.jobUnlocks.yokai = this._binaryFileReader.readBit();
+        this.jobUnlocks.kaiser = this._binaryFileReader.readBit();
     };
 
     private writeJobUnlocks = () => {
@@ -369,8 +369,8 @@ class BravelySecondSave {
         this._binaryFileReader.writeBit(this.jobUnlocks.patissier);
         this._binaryFileReader.writeBit(this.jobUnlocks.exorcist);
         this._binaryFileReader.writeBit(this.jobUnlocks.guardian);
-        this._binaryFileReader.writeBit(this.jobUnlocks.kaiser);
         this._binaryFileReader.writeBit(this.jobUnlocks.yokai);
+        this._binaryFileReader.writeBit(this.jobUnlocks.kaiser);
     };
 
     public getTizJobMastery = () => {
