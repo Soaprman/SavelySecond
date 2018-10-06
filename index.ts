@@ -29,19 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
         writeInspirationalSpeech();
     });
     
-    document.getElementById('unlkdJobsLv10').addEventListener('click', function () {
-        _bsSave.characters.tiz.masterUnlkdJobs();
-        _bsSave.characters.magnolia.masterUnlkdJobs();
-        _bsSave.characters.yew.masterUnlkdJobs();
-        _bsSave.characters.edea.masterUnlkdJobs();
+    document.getElementById('unlockedJobsLv10').addEventListener('click', function () {
+        _bsSave.characters.tiz.masterUnlockedJobs();
+        _bsSave.characters.magnolia.masterUnlockedJobs();
+        _bsSave.characters.yew.masterUnlockedJobs();
+        _bsSave.characters.edea.masterUnlockedJobs();
         writeInspirationalSpeech();
     });
     
-    document.getElementById('unlkdJobsLv11').addEventListener('click', function () {
-        _bsSave.characters.tiz.legendaryUnlkdJobs();
-        _bsSave.characters.magnolia.legendaryUnlkdJobs();
-        _bsSave.characters.yew.legendaryUnlkdJobs();
-        _bsSave.characters.edea.legendaryUnlkdJobs();
+    document.getElementById('unlockedJobsLv11').addEventListener('click', function () {
+        _bsSave.characters.tiz.legendaryUnlockedJobs();
+        _bsSave.characters.magnolia.legendaryUnlockedJobs();
+        _bsSave.characters.yew.legendaryUnlockedJobs();
+        _bsSave.characters.edea.legendaryUnlockedJobs();
         writeInspirationalSpeech();
     });
 

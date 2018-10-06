@@ -108,12 +108,12 @@ class BravelySecondSaveCharacter {
             this.setAllJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level11);
         }
 
-        public masterUnlkdJobs = () => {
-            this.setUnlkdJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level10);
+        public masterUnlockedJobs = () => {
+            this.setUnlockedJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level10);
         }
 
-        public legendaryUnlkdJobs = () => {
-            this.setUnlkdJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level11);
+        public legendaryUnlockedJobs = () => {
+            this.setUnlockedJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level11);
         }
 
         public jobLvlUp = (jobUp, action) => {
@@ -150,7 +150,7 @@ class BravelySecondSaveCharacter {
             }
         }
 
-        private setUnlkdJobMasteries = (jp) => {
+        private setUnlockedJobMasteries = (jp) => {
             for (let job in _bsSave.jobUnlocks)
             {
                 if (_bsSave.jobUnlocks[job] === true)
