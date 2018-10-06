@@ -119,7 +119,7 @@ function formatCharacterJp(character: BravelySecondSaveCharacter) {
             list += `<td class="lvlCell">${jobMas["level"]}</td><td class="jpCell">${jobMas["curJp"]}/${jobMas["needJp"]}</td><td>`;
             if (jobMas["level"] < 9)
             {
-                list += `<button id="${job}_button">+1</button>`;
+                list += `<button id="${job}_button1Up">+1</button>`;
                 tinyMas = true;
             }
             if (jobMas["level"] <= 9)
@@ -164,7 +164,7 @@ function formatJobs(jobs) {
 
 function reattachEvents() {
     // Level Up
-    let buttons = document.querySelectorAll('[id$="_button"]');
+    let buttons = document.querySelectorAll('[id$="_button1Up"]');
     for (let i = 0; i < buttons.length; i++)
     {
         buttons[i].addEventListener("click", function ()
