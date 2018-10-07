@@ -75,7 +75,7 @@ class BravelySecondSaveCharacter {
             swordmaster: 0,
             pirate: 0,
             darkknight: 0,
-            templar: 0, // could be templar, kaiser, or yokai
+            templar: 0,
             summoner: 0,
             valkyrie: 0,
             redmage: 0,
@@ -92,10 +92,14 @@ class BravelySecondSaveCharacter {
             patissier: 0,
             exorcist: 0,
             guardian: 0,
-            kaiser: 0, // could be templar, kaiser, or yokai
-            yokai: 0, // could be templar, kaiser, or yokai
+            kaiser: 0, // could be kaiser or yokai
+            yokai: 0, // could be kaiser or yokai
         };
-    
+        
+        public resetJobs = () => {
+            this.setAllJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level1);
+        }
+        
         public masterAllJobs = () => {
             this.setAllJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level10);
         }
@@ -103,38 +107,57 @@ class BravelySecondSaveCharacter {
         public legendaryAllJobs = () => {
             this.setAllJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level11);
         }
+
+        public masterUnlockedJobs = () => {
+            this.setUnlockedJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level10);
+        }
+
+        public legendaryUnlockedJobs = () => {
+            this.setUnlockedJobMasteries(BravelySecondSaveCharacter.JP_LEVELS.level11);
+        }
+
+        public jobLvlUp = (jobUp, action) => {
+            switch (action) {
+                case "+1":
+                    for (let lvl in BravelySecondSaveCharacter.JP_LEVELS)
+                    {
+                        if(BravelySecondSaveCharacter.JP_LEVELS[lvl] > this.jobMastery[jobUp])
+                        {
+                            this.jobMastery[jobUp] = BravelySecondSaveCharacter.JP_LEVELS[lvl];
+                            break;
+                        }
+                    }       
+                    break;
+            
+                case "master":
+                        this.jobMastery[jobUp] = BravelySecondSaveCharacter.JP_LEVELS.level10;
+                        break;
+
+                case "legend":
+                    this.jobMastery[jobUp] = BravelySecondSaveCharacter.JP_LEVELS.level11;
+                    break;
+
+                default:
+                    alert("If you see this something went horribly wrong!");
+                    break;
+            }
+        }
     
         private setAllJobMasteries = (jp) => {
-            this.jobMastery.freelancer = jp;
-            this.jobMastery.knight = jp;
-            this.jobMastery.blackmage = jp;
-            this.jobMastery.whitemage = jp;
-            this.jobMastery.monk = jp;
-            this.jobMastery.ranger = jp;
-            this.jobMastery.ninja = jp;
-            this.jobMastery.timemage = jp;
-            this.jobMastery.swordmaster = jp;
-            this.jobMastery.pirate = jp;
-            this.jobMastery.darkknight = jp;
-            this.jobMastery.templar = jp;
-            this.jobMastery.summoner = jp;
-            this.jobMastery.valkyrie = jp;
-            this.jobMastery.redmage = jp;
-            this.jobMastery.thief = jp;
-            this.jobMastery.merchant = jp;
-            this.jobMastery.performer = jp;
-            this.jobMastery.fencer = jp;
-            this.jobMastery.bishop = jp;
-            this.jobMastery.wizard = jp;
-            this.jobMastery.charioteer = jp;
-            this.jobMastery.catmancer = jp;
-            this.jobMastery.astrologian = jp;
-            this.jobMastery.hawkeye = jp;
-            this.jobMastery.patissier = jp;
-            this.jobMastery.exorcist = jp;
-            this.jobMastery.guardian = jp;
-            this.jobMastery.kaiser = jp;
-            this.jobMastery.yokai = jp;
+            for (let job in this.jobMastery)
+            {
+                this.jobMastery[job] = jp;
+            }
+        }
+
+        private setUnlockedJobMasteries = (jp) => {
+            for (let job in _bsSave.jobUnlocks)
+            {
+                if (_bsSave.jobUnlocks[job] === true)
+                {
+                    this.jobMastery[job] = jp;
+                }
+            }
         }
     }
     

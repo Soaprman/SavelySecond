@@ -6,7 +6,21 @@
 
         <style type="text/css">
             .top { font-family: "Comic Sans MS" }
-            .box { border: 1px black solid; padding: 10px; margin-bottom: 1em; }
+            .box { border: 1px black solid; padding: 10px; margin-bottom: 1em; max-width: 99%;}
+            .charTable { margin: 5px; width: 24%; }
+            .unlockTable { margin: 5px; width: 100% }
+            table, td { border: 1px black solid; }
+            .jobCell { text-align: left; }
+            .jpCell { text-align: right; }
+            .lvlCell { text-align: center; }
+
+            [id$="_button"] { width: 50%; }
+            [id$="_buttonUnlock"] { width: 100%; }
+            [id$="_buttonMaster"] { width: 50%; }
+            .bigMaster { width: 100%; }
+            [id$="_buttonLegend"] { width: 100%; }
+
+            #inspiresConfidenceDoesntIt { display: flex; flex-direction: row; flex-wrap: wrap; }
         </style>
     </head>
     <body>
@@ -14,38 +28,46 @@
             <div style="font-size: 3em;">SAVELY SECOND</div>
             <div style="font-size: 1.5em;">bravely second save editor</div>
         </div>
-        <br />
+        <br/>
 
         <div class="box">
-            Load a BD2GAME0.sav, BD2GAME1.sav, or BD2GAME2.sav file: <input type="file" id="importedSave" accept=".sav" />
-            <br />
-            <button id="saveChanges">Save changes + download edited save</button>
-            <br />
+            <p>
+                Load a BD2GAME0.sav, BD2GAME1.sav, or BD2GAME2.sav:<br/>
+                <input type="file" id="importedSave" accept=".sav" />
+                <br/><br/>
+                <button id="saveChanges">Save changes + download edited save</button>
+                <br/>
             (You need a 3DS with homebrew and/or CFW to extract saves for this. If that doesn't make sense to you, google it or something. Citra saves also work.)
+            </p>
         </div>
 
         <div class="box">
-            <button id="allJobsLv10">Set all jobs to level 10 (master)</button>
-            <button id="allJobsLv11">Set all jobs to level 11 (legendary)</button>
+            <button id="resetJobLvl">Reset all job levels (lvl 1)</button>
+            <button id="unlockedJobsLv10">Master all unlocked jobs (lvl 10)</button>
+            <button id="unlockedJobsLv11">Legendary all unlocked jobs (lvl 11)</button>
+            <button id="allJobsLv10">Master all jobs (lvl 10)</button>
+            <button id="allJobsLv11">Legendary all jobs (lvl 11)</button>
             <button id="unlockAllJobs">Unlock all jobs</button>
-            <br /><br />
+            <!-- <br/><br/>
             More functionality might come someday, but it might also not come someday.
-            <br />
-            Don't get your hopes up because woooooowee this save structure boy howdy lemme tell ya
+            <br/>
+            Don't get your hopes up because woooooowee this save structure boy howdy lemme tell ya -->
+            <!-- More functionality is here biches! 😈 -->
         </div>
 
         <div class="box">
-            This part just shows information about the loaded save to help convince you that it works.<br />
-            If this data looks wrong, then there's something <i>different</i> about your save and it might not work if you edit it. (It might, though; you're welcome to try)<br />
-            If you report issues, PLEASE UPLOAD YOUR SAVE or I will not help you.<br />
-            (Note: kaiser/templar/yokai may be wrong because I haven't unlocked them yet to verify)
-            <hr />
-            <div id="inspiresConfidenceDoesntIt"></div>
+            <div id="lessInpiration">This part just shows information about the loaded save to help convince you that it works.<br/>
+            If this data looks wrong, then there's something <i>different</i> about your save and it might not work if you edit it. (It might, though; you're welcome to try)<br/>
+            </div>
+            <div id="inspiresConfidenceDoesntIt" style="display: none;"></div>
         </div>
 
-        <br /><br />
-        source to this thing is on the git's hub: https://github.com/Soaprman/SavelySecond
-        <br />
-        feel free to modify it and rehost it to your fart's content
+        <div class="box">
+            If you report issues, PLEASE UPLOAD YOUR SAVE or I will not help you.<br/>
+            <br/>
+            source to this thing is on the git's hub: <a href="https://github.com/Soaprman/SavelySecond">Soaprman/SavelySecond</a>
+            <br/>
+            feel free to modify it and rehost it to your fart's content
+        </div>
     </body>
 </html>
